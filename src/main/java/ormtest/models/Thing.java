@@ -1,18 +1,22 @@
 package ormtest.models;
 
+
 import javax.persistence.*;
 
-@Entity(name = "Product")
-@Table
-public class Product {
+@Entity
+public class Thing {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String name;
+
+    protected Thing() {}
+
+    public Thing(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -28,5 +32,10 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Thing[id=%d, name=%s]", id, name);
     }
 }
